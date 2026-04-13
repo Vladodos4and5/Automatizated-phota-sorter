@@ -258,7 +258,6 @@ std::vector<std::string> RankImagesByQuery(
 
     for (auto& img : images) {
 
-        // ✔ защита от пустых описаний
         if (img.GetDescription().empty())
             continue;
 
@@ -273,9 +272,7 @@ std::vector<std::string> RankImagesByQuery(
     }
 
     std::sort(scored.begin(), scored.end(),
-              [](const auto& a, const auto& b) {
-                  return a.second > b.second;
-              });
+              [](const auto& a, const auto& b) {return a.second > b.second;});
 
     std::vector<std::string> result;
     for (const auto& [path, score] : scored) {
@@ -311,7 +308,6 @@ void LoadDescriptionsFromFile(std::vector<Image>& images, const std::string& fil
 void SaveDescriptionsToFile(const std::vector<Image>& images, const std::string& filename) {
     nlohmann::json j;
 
-    // если файл уже есть — сначала читаем его
     std::ifstream in_file(filename);
     if (in_file) {
         try {
