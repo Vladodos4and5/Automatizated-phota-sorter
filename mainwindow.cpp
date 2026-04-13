@@ -5,9 +5,7 @@
 #include <QString>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+    : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     ui->label_3->setText("Введите путь к папке");
@@ -83,7 +81,6 @@ void MainWindow::on_similar_btn_clicked()
 
     for (auto& img : images_) {
 
-        // ❗ пропускаем пустые описания
         if (img.GetDescription().empty())
             continue;
 
@@ -176,6 +173,6 @@ int MainWindow::GetPort() const
             return port;
     }
 
-    return 11434; // дефолт Ollama
+    return 11434;
 }
 
